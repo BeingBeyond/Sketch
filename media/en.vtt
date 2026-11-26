@@ -1,0 +1,137 @@
+WEBVTT
+
+1
+00:00:00.300 --> 00:00:06.593
+What does a robot need to lift a cup by its handle? A video of the right grasp, and the actions that make it work.
+
+2
+00:00:10.300 --> 00:00:13.095
+We want one hand on the handle and the other hand free.
+
+3
+00:00:13.395 --> 00:00:19.005
+With text alone, a second hand steadies the cup. With the sketch, one hand lifts it by the handle.
+
+4
+00:00:22.300 --> 00:00:29.297
+Even when the video shows the intended grasp, fingers and bottle can overlap on screen while remaining apart in depth.
+
+5
+00:00:29.597 --> 00:00:32.371
+Copy that pose, and the robot can close on air.
+
+6
+00:00:33.300 --> 00:00:39.124
+This bottle is eighteen centimeters tall. Its size and path in the sketch guide the generated pour.
+
+7
+00:00:39.424 --> 00:00:44.437
+To recover the robot action, we fit the fingers to that same surface as the bottle moves.
+
+8
+00:00:46.300 --> 00:00:55.260
+Given the pouring task, the agent uses RGB and depth to lay out the tabletop, an eighteen-centimeter bottle, and a fixed receiving cup.
+
+9
+00:00:57.300 --> 00:01:05.044
+The agent chooses the lower bottle wall and a clear approach for the right hand. The palm sphere stops where its surface touches the bottle.
+
+10
+00:01:08.300 --> 00:01:13.143
+The agent sets waypoints to clear the cup, tilt over its opening, and put the bottle back.
+
+11
+00:01:13.443 --> 00:01:19.139
+The compiler connects them, checks reach and clearance, and renders the motion from the original camera.
+
+12
+00:01:22.300 --> 00:01:26.353
+The sphere guides the palm. The moving bottle shows where and when to tilt.
+
+13
+00:01:26.653 --> 00:01:29.768
+The video model fills in the fingers and the scene appearance.
+
+14
+00:01:32.300 --> 00:01:34.839
+Move the bowl, and the hand takes a different path.
+
+15
+00:01:35.139 --> 00:01:41.304
+With the sketch, the share of videos that follow the requested path rises from nine to seventy percent.
+
+16
+00:01:42.300 --> 00:01:48.273
+The hand in the video may tilt the bottle early. Dynamic time warping matches the palm to the sketch sphere.
+
+17
+00:01:48.573 --> 00:01:51.581
+Each video frame inherits the matching bottle pose.
+
+18
+00:01:53.300 --> 00:02:00.799
+The video identifies skin patches likely to touch. We bind those patches to the lower bottle wall specified in the sketch.
+
+19
+00:02:01.300 --> 00:02:06.789
+Blue lines measure the gap to the bottle surface. Purple marks where the reconstructed fingers pass inside.
+
+20
+00:02:07.300 --> 00:02:11.673
+First we fit one hand scale for the whole clip, and a wrist pose for each frame.
+
+21
+00:02:11.973 --> 00:02:15.323
+Then we fix the scale and adjust the wrist and finger angles.
+
+22
+00:02:15.623 --> 00:02:22.087
+The fingers should match the image and stay on the same bottle patch as it moves, with less gap and penetration.
+
+23
+00:02:24.300 --> 00:02:30.828
+At grasp time, we solve for the robot’s arm and finger joints together, starting from the refined human grasp.
+
+24
+00:02:31.128 --> 00:02:39.789
+The active pads should reach their targets and face the bottle surface. We also penalize penetration and keep the palm close to the human reference.
+
+25
+00:02:40.300 --> 00:02:46.791
+From its own grasp, the robot follows the change in the human wrist pose. Each image has a matching joint command.
+
+26
+00:02:47.300 --> 00:02:52.804
+The drawer slides straight back. The lid rotates around its hinge as the hand presses it shut.
+
+27
+00:02:54.300 --> 00:03:00.529
+For placement, the robot lets go over the tray. For extraction, it keeps hold of the tissue as it lifts.
+
+28
+00:03:01.300 --> 00:03:05.695
+Physics replay tests the grasp: does the sheet come out of the box with the fingers?
+
+29
+00:03:08.300 --> 00:03:14.465
+Sketch achieves the highest closed-loop success. New objects are harder for the policy than new layouts.
+
+30
+00:03:16.300 --> 00:03:23.276
+Sketch synthesizes grasps and motions for different arms and hands, from a parallel gripper to multi-fingered hands.
+
+31
+00:03:26.300 --> 00:03:32.337
+On the physical robot, the policy uses camera observations to grasp the bottle and pour into the bowl.
+
+32
+00:03:36.300 --> 00:03:41.356
+The robot picks up a brush, stacks cups, grasps a cup handle, and puts paper in the bin.
+
+33
+00:03:41.656 --> 00:03:46.392
+Closing the drawer and laptop are separately trained and evaluated extensions.
+
+34
+00:03:54.150 --> 00:03:55.466
+Thank you for watching.
