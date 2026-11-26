@@ -77,31 +77,24 @@ switcher('#bodies', '#bodyvideo', key => document.querySelector('#bodynote').tex
 const gallery = document.querySelector('#gallery');
 const taskButtons = [...document.querySelectorAll('#tasks button')];
 const familyButtons = [...document.querySelectorAll('#gallery-families button')];
-const viewButtons = [...document.querySelectorAll('.gallery-views button')];
-const galleryLabels = document.querySelector('#gallery-stage .viewnames');
-const galleryStage = document.querySelector('#gallery-stage');
 let task = taskButtons[0];
-let galleryView = matchMedia('(max-width: 700px)').matches ? '-r' : '';
 let galleryTicket = 0;
 function mark(buttons, selected) {
   for (const button of buttons) button.setAttribute('aria-pressed', String(button === selected));
 }
-function displayGallery(play, time = 0) {
+function displayGallery(play) {
   const ticket = ++galleryTicket;
-  const key = task.dataset.id + galleryView;
+  const key = task.dataset.id;
   gallery.pause();
   gallery.poster = 'media/' + key + '.jpg';
   gallery.dataset.src = 'media/' + key + '.mp4';
-  gallery.setAttribute('aria-label', task.textContent.trim() + ', ' + (viewButtons.find(b => b.dataset.view === galleryView).textContent));
-  galleryLabels.hidden = Boolean(galleryView);
-  galleryStage.classList.toggle('single-stage', Boolean(galleryView));
-  mark(viewButtons, viewButtons.find(b => b.dataset.view === galleryView));
-  if (!play && !time && !gallery.hasAttribute('src')) return;
+  gallery.setAttribute('aria-label', task.textContent.trim() + ', all stages');
+  if (!play && !gallery.hasAttribute('src')) return;
   prepare(gallery).then(ready => {
     if (!ready || ticket !== galleryTicket) return;
     const start = () => {
       if (ticket !== galleryTicket) return;
-      gallery.currentTime = Math.min(time, gallery.duration || time);
+      gallery.currentTime = 0;
       if (play) gallery.play().catch(() => {});
     };
     if (gallery.readyState >= 1) start();
@@ -121,11 +114,6 @@ for (const family of familyButtons) family.addEventListener('click', () => {
   mark(familyButtons, family);
   for (const button of taskButtons) button.hidden = button.dataset.family !== family.dataset.family;
   selectTask(taskButtons.find(button => !button.hidden));
-});
-for (const button of viewButtons) button.addEventListener('click', () => {
-  if (galleryView === button.dataset.view) return;
-  galleryView = button.dataset.view;
-  displayGallery(!gallery.paused, gallery.currentTime);
 });
 displayGallery(false);
 const movie = document.querySelector('#movie');
