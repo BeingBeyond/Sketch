@@ -1,0 +1,145 @@
+WEBVTT
+
+00:00:00.280 --> 00:00:02.580
+How do you turn a video of a human hand
+
+00:00:02.580 --> 00:00:05.251
+into a demonstration a robot can learn from?
+
+00:00:07.280 --> 00:00:11.730
+With just the first frame and a text prompt, the hand goes straight for the slot.
+
+00:00:11.730 --> 00:00:13.500
+Our sketch calls for a miss.
+
+00:00:13.500 --> 00:00:17.823
+The generated hand misses to the right, slides across, and inserts the key.
+
+00:00:18.280 --> 00:00:21.200
+The video shows a bottle moving across the image.
+
+00:00:21.200 --> 00:00:23.040
+How far did it actually travel?
+
+00:00:23.040 --> 00:00:25.670
+Each tick on the sketch is five centimeters.
+
+00:00:25.670 --> 00:00:28.584
+That motion gives the robot a distance reference.
+
+00:00:32.280 --> 00:00:35.565
+The agent uses color and depth to place the bottle and cup.
+
+00:00:37.280 --> 00:00:39.619
+It selects a patch on the bottle for contact.
+
+00:00:43.230 --> 00:00:47.475
+The planned hand approaches the bottle, grasps it, and lifts it clear of the rim.
+
+00:00:49.530 --> 00:00:53.114
+It tilts the bottle over the cup, then sets it down and releases it.
+
+00:00:56.280 --> 00:00:58.260
+The rendered sketch guides the motion.
+
+00:00:58.260 --> 00:01:01.485
+The video model supplies the fingers and the scene appearance.
+
+00:01:02.280 --> 00:01:03.660
+Put the can in the bowl.
+
+00:01:03.660 --> 00:01:06.640
+Here are sixteen ways to lay out those same objects.
+
+00:01:06.640 --> 00:01:10.170
+Each generated view takes the place of its matching sketch,
+
+00:01:10.170 --> 00:01:12.541
+so you can compare their starting positions.
+
+00:01:14.280 --> 00:01:17.800
+One hand bumps the bottle aside. Another knocks it over.
+
+00:01:17.800 --> 00:01:20.061
+Both back away before trying again.
+
+00:01:22.280 --> 00:01:25.980
+Watch the key tip. Text alone leads to a direct approach.
+
+00:01:25.980 --> 00:01:28.760
+When the sketch calls for a sideways correction,
+
+00:01:28.760 --> 00:01:32.841
+the generated hand slides the key along the lock face before insertion.
+
+00:01:33.280 --> 00:01:35.860
+The generated hand can move ahead of the sketch.
+
+00:01:35.860 --> 00:01:39.842
+Dynamic time warping matches each video frame to a planned object pose.
+
+00:01:40.280 --> 00:01:42.710
+The video tells us which skin patches touch.
+
+00:01:42.710 --> 00:01:47.491
+The sketch tells us which part of the moving bottle those fingers should stay against.
+
+00:01:48.280 --> 00:01:52.450
+We fit one hand scale for the clip and a wrist pose for each frame.
+
+00:01:52.450 --> 00:01:56.300
+Then we refine the wrist and finger angles to match the image
+
+00:01:56.300 --> 00:01:58.243
+and reduce gaps and penetration.
+
+00:01:59.280 --> 00:02:02.390
+We solve for the robot arm and finger joints together.
+
+00:02:02.390 --> 00:02:06.450
+Finger pads reach their contact targets with opposing surface normals,
+
+00:02:06.450 --> 00:02:08.833
+while the optimizer penalizes penetration.
+
+00:02:09.280 --> 00:02:10.790
+Starting from its own grasp,
+
+00:02:10.790 --> 00:02:14.837
+the robot follows the relative wrist motion through the rest of the action.
+
+00:02:15.280 --> 00:02:19.920
+A pinch at the tissue edge, a grasp around a handle, a lift over a tray.
+
+00:02:19.920 --> 00:02:23.792
+Each generated observation has a corresponding robot action.
+
+00:02:24.280 --> 00:02:27.730
+Sketch reaches twenty-two percent overall closed-loop success.
+
+00:02:27.730 --> 00:02:30.842
+New objects are harder for the policy than new layouts.
+
+00:02:31.280 --> 00:02:36.740
+The same procedure produces demonstrations for a parallel gripper and two dexterous hands.
+
+00:02:36.740 --> 00:02:39.835
+Each robot solves the grasp using its own geometry.
+
+00:02:40.280 --> 00:02:43.360
+On the real robot, a policy trained on Sketch data
+
+00:02:43.360 --> 00:02:45.805
+grasps the bottle and pours into the bowl.
+
+00:02:46.280 --> 00:02:50.090
+With more layouts and six hundred forty-eight Sketch demonstrations,
+
+00:02:50.090 --> 00:02:54.550
+the policy succeeds in forty-one of a hundred trials across five tasks.
+
+00:02:54.550 --> 00:02:57.821
+The drawer and laptop policies were trained separately.
+
+00:02:59.150 --> 00:03:00.437
+Thank you for watching.
